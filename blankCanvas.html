@@ -21,6 +21,7 @@
         const PLAYER_SIZE = 20;
         
         const RIGHT_KEY = 39;
+        var rightKeyPressed = false;
         
         
         function mainloop() {
@@ -30,19 +31,21 @@
         }
         
         function keyPressed(evt) {
-           // console.log(evt.keyCode)
             if(evt.keyCode == RIGHT_KEY){
-                alert('hi')
+                rightKeyPressed = true;
             }
         }
         
           function keyReleased(evt) {
-            
+            if(evt.keyCode == RIGHT_KEY){
+                rightKeyPressed = false;
+            }
         }
         
         function playerMove() {
-            playerXpos += playerXspeed;
-             playerYpos += playerYspeed;
+            if(rightKeyPressed){
+               playerXpos += playerXspeed;
+            }
         }
         
          function colorRect(x,y,w,h,c){
