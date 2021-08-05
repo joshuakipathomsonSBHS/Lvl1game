@@ -33,6 +33,7 @@
             colorRect(0,0,canvas.width,canvas.height,'black'); // bg
             colorRect(playerXpos,playerYpos,PLAYER_SIZE,PLAYER_SIZE,'red');
             playerMove();
+            playerMove(playerXspeed,playerYspeed);
         }
         
         function keyPressed(evt) {
