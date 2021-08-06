@@ -14,8 +14,8 @@
             setInterval(mainloop, 1000 / 50);
         }
         
-        var playerXpos = 0;
-        var playerYpos = 0;
+        var playerXpos = 300;
+        var playerYpos = 300;
         var playerXspeed = 5;
         var playerYspeed = 5;
         const PLAYER_SIZE = 20;
@@ -29,11 +29,21 @@
         var upKeyPressed = false;
         var downKeyPressed = false;
         
+        var enemyXpos = 0;
+        var enemyYpos = 0;
+        var enemyXspeed = 5;
+        var enemyYspeed = 5
+        const ENEMY_SIZE = 15;
+        
         function mainloop() {
             colorRect(0,0,canvas.width,canvas.height,'black'); // bg
-            colorRect(playerXpos,playerYpos,PLAYER_SIZE,PLAYER_SIZE,'red');
+            colorRect(playerXpos,playerYpos,PLAYER_SIZE,PLAYER_SIZE,'blue');
             playerMove();
-            playerMove(playerXspeed,playerYspeed);
+            colorRect(enemyXpos,enemyYpos,ENEMY_SIZE,ENEMY_SIZE,'red');
+        }
+        
+        function enemyMovement(){
+          pl  
         }
         
         function keyPressed(evt) {
