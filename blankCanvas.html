@@ -40,10 +40,15 @@
             colorRect(playerXpos,playerYpos,PLAYER_SIZE,PLAYER_SIZE,'blue');
             playerMove();
             colorRect(enemyXpos,enemyYpos,ENEMY_SIZE,ENEMY_SIZE,'red');
+            enemyMovement();
+            
         }
         
         function enemyMovement(){
-          pl  
+          enemyYpos += enemyYspeed; 
+            if(enemyYpos > canvas.height){
+                enemyYpos = 0
+            }
         }
         
         function keyPressed(evt) {
