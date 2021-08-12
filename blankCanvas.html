@@ -28,28 +28,71 @@
         var leftKeyPressed = false;
         var upKeyPressed = false;
         var downKeyPressed = false;
+//        
+//        var enemyXpos = 0;
+//        var enemyYpos = 0;
+//        var enemyXspeed = 5;
+//        var enemyYspeed = 5
+//        const ENEMY_SIZE = 15;
         
-        var enemyXpos = 0;
-        var enemyYpos = 0;
-        var enemyXspeed = 5;
-        var enemyYspeed = 5
-        const ENEMY_SIZE = 15;
+        var enemies = [];
+        
+        
+        var starting = true;
         
         function mainloop() {
             colorRect(0,0,canvas.width,canvas.height,'black'); // bg
             colorRect(playerXpos,playerYpos,PLAYER_SIZE,PLAYER_SIZE,'blue');
             playerMove();
-            colorRect(enemyXpos,enemyYpos,ENEMY_SIZE,ENEMY_SIZE,'red');
+//            colorRect(enemyXpos,enemyYpos,ENEMY_SIZE,ENEMY_SIZE,'red');
             enemyMovement();
+            drawEnemy();
             
+            if(starting){
+                enemyXpos = canvas.width / 2;
+                
+                for(var i = 0; i < 10; i++){
+                    makeEnemy();
+                }
+            }
+            starting = false;
         }
         
         function enemyMovement(){
-          enemyYpos += enemyYspeed; 
-            if(enemyYpos > canvas.height){
-                enemyYpos = 0
-            }
+            enemies.forEach(function(e,i,array){
+                e.enemyYpos += e.enemyYspeed; 
+                if(e.enemyYpos > canvas.height){
+                    e.enemyYpos = 0
+                }
+                
+            });
         }
+        
+        function drawEnemy(){
+            enemies.forEach(function(e,i,array){
+                colorRect(e.enemyXpos,e.enemyYpos,e.ENEMY_SIZE,e.ENEMY_SIZE,'red');
+            });
+        }
+        
+        function makeEnemy(){
+            const ENEMY_SIZE = 15;
+            var enemyXpos = Math.floor(Math.random()*(canvas.width - ENEMY_SIZE));
+            var enemyYpos = 0;
+            var enemyXspeed = 5;
+            var enemyYspeed = 5
+
+            var enemy = {
+                enemyXpos: enemyXpos,
+                enemyYpos: enemyYpos,
+                ENEMY_SIZE: ENEMY_SIZE,
+                enemyXspeed: enemyXspeed,
+                enemyYspeed: enemyYspeed,
+            }
+            
+            enemies.push(enemy);
+        }
+        
+        
         
         function keyPressed(evt) {
             if(evt.keyCode == RIGHT_KEY){
