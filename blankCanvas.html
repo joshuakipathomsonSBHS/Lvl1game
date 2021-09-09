@@ -63,6 +63,8 @@
                 e.enemyYpos += e.enemyYspeed; 
                 if(e.enemyYpos > canvas.height){
                     e.enemyYpos = 0
+                    e.enemyXpos = Math.floor(Math.random()*(canvas.width - ENEMY_SIZE));
+                    e.enemyYspeed = Math.floor(Math.random()*(14 - 3) + 3);
                 }
                 
             });
@@ -79,7 +81,7 @@
             var enemyXpos = Math.floor(Math.random()*(canvas.width - ENEMY_SIZE));
             var enemyYpos = 0;
             var enemyXspeed = 5;
-            var enemyYspeed = 5
+            var enemyYspeed = Math.floor(Math.random()*(14 - 3) + 3)
 
             var enemy = {
                 enemyXpos: enemyXpos,
