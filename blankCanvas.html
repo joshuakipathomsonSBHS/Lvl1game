@@ -83,6 +83,11 @@
                    playerXpos = 0;
                    playerYpos = canvas.height - PLAYER_SIZE; 
                 }
+                
+                 if(e.enemyYpos + e.ENEMY_SIZE > bulletYpos && e.enemyYpos < bulletYpos + BULLET_HEIGHT && e.enemyXpos + e.ENEMY_SIZE > bulletXpos && e.enemyXpos < bulletXpos + BULLET_WIDTH ){
+                    bulletXpos = canvas.width; 
+                     e.enemyYpos = 0 - e.ENEMY_SIZE;
+                 }
 
             });
         }
