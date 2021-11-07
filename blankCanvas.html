@@ -22,16 +22,39 @@
         var difficulty = '';
         var pass = false;
         
-        while(pass == true){
-            difficulty = prompt('How hard do you want it?','asian');
+        while(pass == false){
+            difficulty = prompt('How hard do you want it? Easy, Medium, Hard, Extreme, Demon');
             difficulty = difficulty.toLowerCase();
-            if(difficulty == 'easy' || difficulty == 'medium'){
+            if(difficulty == 'easy' || difficulty == 'medium' || difficulty == 'hard' || difficulty == 'extreme' || difficulty == 'demon'
+              ){
                pass = true;
             }      
         }
         
+        var maxSpeed = 0;
+        var minSpeed = 0;
+        
         if(difficulty == 'easy'){
-           // speed = 5;
+           maxSpeed = 5;
+           minSpeed = 2;
+        }
+        
+        if(difficulty == 'medium'){
+           maxSpeed = 10;
+           minSpeed = 5;
+        } 
+        
+        if(difficulty == 'hard'){
+           maxSpeed = 15;
+           minSpeed = 11;
+        }
+        if(difficulty == 'extreme'){
+           maxSpeed = 18;
+           minSpeed = 14;
+        }
+        if(difficulty == 'demon'){
+           maxSpeed = 24;
+           minSpeed = 20;
         }
         
         var bulletXpos = 0;
@@ -63,7 +86,7 @@
         var bossXspeed = 5;
         const BOSS_SIZE = 40;
         
-        
+        var score = 0;
      
 //        var enemyXpos = 0;
 //        var enemyYpos = 0;
@@ -110,12 +133,13 @@
                 if(e.enemyYpos > canvas.height){
                     e.enemyYpos = 0
                     e.enemyXpos = Math.floor(Math.random()*(canvas.width - e.ENEMY_SIZE));
-                    e.enemyYspeed = Math.floor(Math.random()*(14 - 3) + 3);
+                    e.enemyYspeed = Math.floor(Math.random()*(maxSpeed - minSpeed) + minSpeed);
                 }
                 
                 if(e.enemyYpos + e.ENEMY_SIZE > playerYpos && e.enemyYpos < playerYpos + PLAYER_SIZE && e.enemyXpos + e.ENEMY_SIZE > playerXpos && e.enemyXpos < playerXpos + PLAYER_SIZE ){
                    playerXpos = 0;
                    playerYpos = canvas.height - PLAYER_SIZE; 
+                  score --;
                 }
                 
                  if(e.enemyYpos + e.ENEMY_SIZE > bulletYpos && e.enemyYpos < bulletYpos + BULLET_HEIGHT && e.enemyXpos + e.ENEMY_SIZE > bulletXpos && e.enemyXpos < bulletXpos + BULLET_WIDTH ){
@@ -146,7 +170,7 @@
             var enemyXpos = Math.floor(Math.random()*(canvas.width - ENEMY_SIZE));
             var enemyYpos = 0;
             var enemyXspeed = 5;
-            var enemyYspeed = Math.floor(Math.random()*(14 - 3) + 3)
+            var enemyYspeed = Math.floor(Math.random()*(maxSpeed - minSpeed) + minSpeed);
 
             var enemy = {
                 enemyXpos: enemyXpos,
